@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery AJAX -1</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Read JSON File Using Jquery AJAX</h1><br>
+    <div class="form" style="margin: auto; display: block; text-align: center; font-weight: 900;">
+        Your Name :<input type="text" style="font-weight: 900; text-align: center; background-color: aqua; border-radius: 2rem;" name="name" placeholder="Get Name" id="name"><br><br>
+        You Email :<input type="email" style="font-weight: 900; text-align: center; background-color: aqua; border-radius: 2rem;" name="email" placeholder="Get Email" id="email"><br><br>
+        <button type="button" style="background-color: blue; color: white; font-weight: 900; border-radius: 2rem; padding: 1rem;" id="btn">Read Only</button>
+    </div>
+    <div class="result" style="text-align: center; font-weight: 900;"></div>
+</body>
+<script>
+    $(document).ready(function () {
+        $('#btn').click(function () {
+            $.ajax({
+                url: "file.json",
+                type: "GET",
+                dataType: "json",
+                success: function (file) {
+                    $('.result').html(JSON.stringify(file));
+                    $('#name').val(file.Name);
+                    $("#email").val(file.Email);
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error :", error);
+                }
+            });
+        });
+    });
+</script>
+
+</html>
